@@ -10,10 +10,14 @@ const Home = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    axios(
-      'https://api.themoviedb.org/3/search/movie?api_key=7a6a1bf84273ea2287a836a3821ac0a7&query=code&language=fr-FR',
-    ).then((res) => setData(res.data.results))
-  })
+    const movieFect = () => {
+      axios(
+        'https://api.themoviedb.org/3/search/movie?api_key=7a6a1bf84273ea2287a836a3821ac0a7&query=code&language=fr-FR',
+      ).then((res) => setData(res.data.results))
+    }
+    console.log(data)
+    movieFect()
+  }, [])
   return (
     <div className="home">
       <div className="header">
