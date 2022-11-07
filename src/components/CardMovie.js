@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
 
 const CardMovie = ({ movie }) => {
+  const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
   return (
     <div>
       <Card>
@@ -13,7 +14,7 @@ const CardMovie = ({ movie }) => {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image={image}
             alt="green iguana"
           />
           <CardContent>
