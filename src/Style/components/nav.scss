@@ -1,0 +1,16 @@
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  li{
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    &:focus {
+      background-color: red;
+    }
+    
+  }
+}
