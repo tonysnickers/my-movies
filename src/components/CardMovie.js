@@ -13,7 +13,7 @@ const CardMovie = ({ movie }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="240"
             image={image}
             alt="green iguana"
           />
@@ -21,7 +21,7 @@ const CardMovie = ({ movie }) => {
             <Typography gutterBottom variant="h5" component="div">
               {movie.original_title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" className='synopsis'>
               {movie.overview}
             </Typography>
           </CardContent>
