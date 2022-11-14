@@ -10,7 +10,7 @@ const Search = ({setMovie, movie}) => {
         <input
         type="text"
         onChange={(e) => setMovie(e.target.value)}
-        defaultValue={movie}
+        // defaultValue={setMovie}
         />
         <input type="submit" />
     </div>
