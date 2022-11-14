@@ -11,10 +11,15 @@ const CardMovie = ({ movie, setLike, like }) => {
   // const url = '7a6a1bf84273ea2287a836a3821ac0a7'
 
 
-  const handleLike = (id) => {
+  const handleLike = (likeMovie) => {
 
-    const allLikes = like.filter((l) => l !== id)
-      setLike(allLikes)
+    localStorage.setItem("movie", "hello")
+      if (like.includes(likeMovie)) {
+        const deleteLike = like.filter((l) => l !== likeMovie)
+        setLike(deleteLike)
+      } else {
+        setLike([...like, likeMovie ])
+      }
       console.log(like)
   }
 
@@ -50,7 +55,7 @@ const CardMovie = ({ movie, setLike, like }) => {
             >
               {movie.overview}
             </Typography>
-            <Button onClick={() => handleLike(movie)}>like</Button>
+            <Button onClick={() => handleLike(movie.id)}>like</Button>
           </CardContent>
         </CardActionArea>
       </Card>
