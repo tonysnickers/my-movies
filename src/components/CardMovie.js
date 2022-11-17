@@ -53,9 +53,9 @@ const CardMovie = ({ movie, setLike, like }) => {
               >
                 {movie.overview}
               </Typography>
-              <Button onClick={() => handleLike(movie.id)}>like</Button>
             </CardContent>
           </Link>
+              <Button onClick={() => handleLike(movie)}>like</Button>
         </CardActionArea>
       </Card>
     </div>

@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home like={like} setLike={setLike} data={data} setData={setData}/> }/>
         <Route path="/movie/:id" element={<DetailsMovie data={data} setData={setData}/>}/>
-        <Route path="/like" element={<Likes like={like}/>}/>
+        <Route path="/like" element={<Likes like={like} setLike={setLike}/>}/>
       </Routes>
     </div>
   );
