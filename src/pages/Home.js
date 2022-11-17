@@ -6,8 +6,7 @@ import CardMovie from '../components/CardMovie'
 import Nav from '../components/Nav'
 import Search from '../components/Search'
 
-const Home = ({ like, setLike }) => {
-  const [data, setData] = useState([])
+const Home = ({ like, setLike, data, setData }) => {
   const [movie, setMovie] = useState('')
   const [defaultMovie, setDefaultMovie] = useState([])
 
