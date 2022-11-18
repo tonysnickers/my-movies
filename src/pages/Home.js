@@ -6,7 +6,8 @@ import CardMovie from '../components/CardMovie'
 import Nav from '../components/Nav'
 import Search from '../components/Search'
 
-const Home = ({ like, setLike, data, setData }) => {
+const Home = ({ like, setLike }) => {
+  const [data, setData] = useState([])
   const [movie, setMovie] = useState('')
   const [defaultMovie, setDefaultMovie] = useState([])
 
@@ -45,7 +46,7 @@ const Home = ({ like, setLike, data, setData }) => {
         <Search setMovie={setMovie} movie={movie} />
       </div>
 
-      <Container sx={{ marginTop: '60px' }}>
+      <Container sx={{ marginTop: '60px'}}>
         <Grid container spacing={3}>
           {data.map((movie) => (
             <Grid item xs={3} key={movie.id}>
