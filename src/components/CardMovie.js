@@ -4,6 +4,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Button, CardActionArea } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { Suspense } from 'react'
 
 const CardMovie = ({ movie, setLike, like }) => {
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
@@ -23,13 +24,16 @@ const CardMovie = ({ movie, setLike, like }) => {
     <div>
       <Card>
         <CardActionArea>
+          <Suspense fallback={<Loading/>}>
+
+
           <Link to={`/movie/${movie.id}`}>
             <CardMedia
               component="img"
               height="240"
               image={image}
               alt="green iguana"
-              
+
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -59,11 +63,17 @@ const CardMovie = ({ movie, setLike, like }) => {
               </Typography>
             </CardContent>
           </Link>
+          </Suspense>
           <Button onClick={() => handleLike(movie)}>like</Button>
         </CardActionArea>
       </Card>
     </div>
   )
+  function Loading() {
+    return (
+      "waiting....."
+    )
+  }
 }
 
 export default CardMovie
