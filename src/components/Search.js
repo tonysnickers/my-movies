@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Search = ({setMovie, movie}) => {
+const Search = ({setMovie}) => {
 
 
   return (

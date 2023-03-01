@@ -1,64 +1,79 @@
-import {
-  CardMedia,
-  Typography,
-} from '@mui/material'
-import { Box, Container, Stack } from '@mui/system'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import Nav from '../components/Nav'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
+import { Button, CardActionArea } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { Suspense } from 'react'
 
-const DetailsMovie = ({ data, setData }) => {
-
-  const apiKey = '7a6a1bf84273ea2287a836a3821ac0a7'
-  const { id } = useParams()
-  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
-  const [movie, setMovie] = useState("")
+const CardMovie = ({ movie, setLike, like }) => {
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios.get(url).then((res) => setMovie(res.data))
+  const handleLike = (likeMovie) => {
+    localStorage.setItem('movie', 'hello')
+    if (like.includes(likeMovie)) {
+      const deleteLike = like.filter((l) => l !== likeMovie)
+      setLike(deleteLike)
+    } else {
+      setLike([...like, likeMovie])
     }
-    fetchData()
-  }, [])
+    console.log(like)
+  }
 
   return (
     <div>
-      <div className="header">
-        <Nav />
-      </div>
-      <Container sx={{ marginTop: '60px' }}>
-        <Stack spacing={3} direction="row">
-          <CardMedia
-            component="img"
-            height="580"
-            image={image}
-            alt={movie.title}
-          />
-          <Box>
-            <Typography variant="h2">{movie.title}</Typography>
-            <Stack spacing={3} direction="row" sx={{ margin: '10px 0' }}>
-              {movie?.genres?.map((genre) => (
-                <Typography
-                  sx={{
-                    border: '1px solid',
-                    padding: '5px 10px',
-                    borderRadius: '10px',
-                  }}
-                  key={genre.id}
-                  >
-                  {genre.name}
-                </Typography>
-              ))}
-            </Stack>
-            <Typography variant="body">{movie.overview}</Typography>
-          </Box>
-        </Stack>
-      </Container>
+      <Card>
+        <CardActionArea>
+          <Suspense fallback={<Loading/>}>
+
+
+          <Link to={`/movie/${movie.id}`}>
+            <CardMedia
+              component="img"
+              height="240"
+              image={image}
+              alt="green iguana"
+
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {movie.original_title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Date de sortie:
+                {movie.release_date}
+              </Typography>
+              <Typography>{movie.vote_average}/ 10 ??</Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                className="synopsis"
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
+                {movie.genre_ids.map((type) => (
+                  <Typography sx={{ marginRight: 2 }}>{type}</Typography>
+                ))}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                className="synopsis"
+              >
+                {movie.overview}
+              </Typography>
+            </CardContent>
+          </Link>
+          </Suspense>
+          <Button onClick={() => handleLike(movie)}>like</Button>
+        </CardActionArea>
+      </Card>
     </div>
   )
+  function Loading() {
+    return (
+      "waiting....."
+    )
+  }
 }
 
-export default DetailsMovie
+export default CardMovie
